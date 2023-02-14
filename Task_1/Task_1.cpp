@@ -18,11 +18,10 @@ public:
 class Quadrangle : public Figure {
 public:
 	Quadrangle() { sides_count = 4; name = "Прямоугольник"; };
-	//int get_sides_count() { return sides_count; }
 };
 
 int main(void) {
-	//setlocale(LC_ALL, "Rus");
+	setlocale(LC_ALL, "Rus");
 	Figure F;
 	std::cout << "Количество сторон: \n";
 	std::cout << F.get_name_figure() << ": " << F.get_sides_count() << std::endl;
