@@ -4,12 +4,6 @@ class Triangle {
 public:
     Triangle() : Triangle(10, 20, 30, 50, 60, 70) {}
 
-    Triangle(int a, int b, int c, int A, int B, int C) {
-        this->side_a = a; this->side_b = b; this->side_c = c;
-        this->corner_a = A; this->corner_b = B; this->corner_c = C;
-        this->name = "Треугольник";
-    }
-
     std::string get_name() { return name; }
     int get_side_a() { return side_a; }
     int get_side_b() { return side_b; }
@@ -18,8 +12,13 @@ public:
     int get_corner_b() { return corner_b; }
     int get_corner_c() { return corner_c; }
 protected:
-    std::string name;
+    Triangle(int a, int b, int c, int A, int B, int C) {
+        this->side_a = a; this->side_b = b; this->side_c = c;
+        this->corner_a = A; this->corner_b = B; this->corner_c = C;
+        this->name = "Треугольник";
+    }
 
+    std::string name;
     // Стороны
     int side_a, side_b, side_c;
     // Углы
@@ -29,6 +28,7 @@ protected:
 class RightTriangle : public Triangle {
 public:
     RightTriangle() : RightTriangle(10, 20, 30, 50, 60) {}
+protected:
     RightTriangle(int a, int b, int c, int A, int B) : Triangle(a, b, c, A, B, 90) { 
         this->name = "Прямоугольный треугольник";
     }
@@ -37,7 +37,7 @@ public:
 class IsoscelesTriangle : public Triangle {
 public:
     IsoscelesTriangle() : IsoscelesTriangle(10, 20, 50, 60) {}
-    
+protected:
     IsoscelesTriangle(int ac, int b, int AC, int B) : Triangle(ac, b, ac, AC, B, AC) { 
         this->name = "Равнобедренный треугольник";
     }
@@ -46,7 +46,7 @@ public:
 class EquilateralTriangle : public Triangle {
 public:
     EquilateralTriangle() : EquilateralTriangle(30) {}
-
+protected:
     EquilateralTriangle(int abc) : Triangle(abc, abc, abc, 60, 60, 60) {
         this->name = "Равносторонний треугольник";    
     }
@@ -58,12 +58,6 @@ class Quadrilateral {
 public:
     Quadrilateral() : Quadrilateral(10, 20, 30, 40, 50, 60, 70, 80) {}
 
-    Quadrilateral (int a, int b, int c, int d, int A, int B, int C, int D) {
-        this->side_a = a; this->side_b = b; this->side_c = c; this->side_d = d;
-        this->corner_a = A; this->corner_b = B; this->corner_c = C; this->corner_d = D;
-        this->name = "Четырехугольник";
-    }
-
     std::string get_name() { return name; }
     int get_side_a() { return side_a; }
     int get_side_b() { return side_b; }
@@ -74,6 +68,12 @@ public:
     int get_corner_c() { return corner_c; }
     int get_corner_d() { return corner_d; }
 protected:
+    Quadrilateral (int a, int b, int c, int d, int A, int B, int C, int D) {
+        this->side_a = a; this->side_b = b; this->side_c = c; this->side_d = d;
+        this->corner_a = A; this->corner_b = B; this->corner_c = C; this->corner_d = D;
+        this->name = "Четырехугольник";
+    }
+
     std::string name;
     // Стороны
     int side_a, side_b, side_c, side_d;
@@ -84,6 +84,7 @@ protected:
 class Rectangle : public Quadrilateral {
 public:
     Rectangle() : Rectangle(10, 20) {}
+protected:
     Rectangle(int ac, int bd) : Quadrilateral(ac, bd, ac, bd, 90, 90, 90, 90) {
         this->name = "Прямоугольник";
     }
@@ -92,6 +93,7 @@ public:
 class Square : public Rectangle {
 public:
     Square() : Square(20) {}
+protected:
     Square(int abcd) : Rectangle(abcd, abcd) {
         this->name = "Квадрат";
     }
@@ -100,6 +102,7 @@ public:
 class Parallelogram : public Quadrilateral {
 public:
     Parallelogram() : Parallelogram(20, 30, 30, 40) {}
+protected:
     Parallelogram(int ac, int bd, int AC, int BD) : Quadrilateral(ac, bd, ac, bd, AC, BD, AC, BD) {
         this->name = "Параллелограмм";
     }
@@ -108,6 +111,7 @@ public:
 class Rhombus : public Parallelogram {
 public:
     Rhombus() : Rhombus(30, 40) {}
+private:
     Rhombus(int AC, int BD) : Parallelogram(30, 30, AC, BD) {
         this->name = "Ромб";
     }
